@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>TakeMyNote.Data</AssemblyName>
+    <RootNamespace>TakeMyNote.Data</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
