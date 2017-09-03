@@ -1,11 +1,36 @@
 ﻿using System;
 using System.Linq;
-using DomainModel.Model;
+using TakeMyNote.Model;
 using Microsoft.EntityFrameworkCore;
-using TakeMyNote.Data.Model;
+using System.Configuration;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
 
-namespace TakeMyNote.Data
+namespace DataAccess
 {
+    public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<DatabaseContext>
+    {
+        public DatabaseContext CreateDbContext(string[] args)
+        {
+
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseNpgsql("User ID=postgres;Password=postgres;Host=localhost;Port=5432;Database=mynotes;Pooling=true;");
+
+            return new DatabaseContext(optionsBuilder.Options);
+
+            // TODO: from config file
+
+            //IConfigurationRoot configuration = new ConfigurationBuilder()
+            //    .SetBasePath(Directory.GetCurrentDirectory())
+            //    .AddJsonFile("appsettings.json")
+            //    .Build();
+            //var builder = new DbContextOptionsBuilder<CodingBlastDbContext>();
+            //var connectionString = configuration.GetConnectionString("DefaultConnection");
+            //builder.UseSqlServer(connectionString);
+            //return new CodingBlastDbContext(builder.Options);
+        }
+    }
+
     // >dotnet ef migration add testMigration in AspNet5MultipleProject
     public class DatabaseContext : DbContext
     {
@@ -17,16 +42,24 @@ namespace TakeMyNote.Data
 
         public DbSet<User> Users { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            builder.Entity<Note>().HasKey(m => m.Id);
-            builder.Entity<User>().HasKey(m => m.Id);
+            var connstr = "User ID=postgres;Password=postgres;Host=localhost;Port=5432;Database=mynotes;Pooling=true;";
+            optionsBuilder.UseNpgsql(connstr);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.HasDefaultSchema("public");
+
+            modelBuilder.Entity<User>().HasKey(m => m.Id);
+            modelBuilder.Entity<Note>().HasKey(m => m.Id);
 
             //// shadow properties
             //builder.Entity<DataEventRecord>().Property<DateTime>("UpdatedTimestamp");
             //builder.Entity<SourceInfo>().Property<DateTime>("UpdatedTimestamp");
 
-            base.OnModelCreating(builder);
+            base.OnModelCreating(modelBuilder);
         }
 
         public override int SaveChanges()
