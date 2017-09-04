@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using DomainModel.Model;
 using Microsoft.EntityFrameworkCore;
 using TakeMyNote.Data.Model;
 
