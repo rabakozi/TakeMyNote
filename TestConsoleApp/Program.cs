@@ -37,7 +37,7 @@ namespace TestConsoleApp
                // Console.Write("Enter a heading for a new Note: ");
                // var name = Console.ReadLine();
 
-                var note = new Note { Heading = "lofasz" + DateTime.Now.Second };
+                var note = new Note { Title = "lofasz" + DateTime.Now.Second };
                 db.Notes.Add(note);
                 db.SaveChanges();
 
@@ -48,7 +48,7 @@ namespace TestConsoleApp
                 Console.WriteLine("All blogs in the database:");
                 foreach (var item in query)
                 {
-                    Console.WriteLine(item.Heading);
+                    Console.WriteLine(item.Title);
                 }
 
                 Console.WriteLine("Press any key to exit...");

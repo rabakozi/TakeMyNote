@@ -31,7 +31,7 @@ namespace ConsoleApp
                 Console.Write("Enter a heading for a new Note: ");
                 var name = Console.ReadLine();
 
-                var note = new Note { Heading = name };
+                var note = new Note { Title = name };
                 db.Notes.Add(note);
                 db.SaveChanges();
                 
@@ -43,7 +43,7 @@ namespace ConsoleApp
                 Console.WriteLine("All blogs in the database:");
                 foreach (var item in query)
                 {
-                    Console.WriteLine(item.Heading);
+                    Console.WriteLine(item.Title);
                 }
 
                 Console.WriteLine("Press any key to exit...");
