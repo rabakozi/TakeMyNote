@@ -41,6 +41,14 @@ namespace WebApi.Controllers
         public void Delete(int id)
         {
         }
+
+        // GET api/values
+        [HttpGet]
+        public IEnumerable<Note> Get()
+        {
+            var notes = new List<Note>();
+            return notes;
+        }
     }
 }
 

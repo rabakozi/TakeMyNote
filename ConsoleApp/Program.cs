@@ -1,4 +1,4 @@
-﻿using DataAccess;
+﻿using TakeMyNote.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using System;
 using TakeMyNote.Model;

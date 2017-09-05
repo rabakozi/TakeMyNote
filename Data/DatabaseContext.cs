@@ -6,7 +6,7 @@ using System.Configuration;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace DataAccess
+namespace TakeMyNote.DataAccess
 {
     public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<DatabaseContext>
     {

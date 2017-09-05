@@ -10,12 +10,13 @@ namespace WebApi.Controllers
     [Route("api/[controller]")]
     public class UsersController : Controller
     {
-        //// GET api/values
-        //[HttpGet]
-        //public IEnumerable<User> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
+        // GET api/values
+        [HttpGet]
+        public IEnumerable<User> Get()
+        {
+            var users = new List<User>();
+            return users;
+        }
 
         // GET api/values/5
         [HttpGet("{id}")]
