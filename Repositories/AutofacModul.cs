@@ -1,15 +1,15 @@
 ﻿using Autofac;
 
-namespace TakeMyNote.WebApi
+namespace TakeMyNote.Repositories
 {
     public class AutofacModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
-            //builder
-            //    .RegisterType<NotesService>()
-            //    .As<INotesService>()
-            //    .SingleInstance();
+            builder
+                .RegisterType<NotesRepository>()
+                .As<INotesRepository>()
+                .SingleInstance();
         }
 
         ////

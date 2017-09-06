@@ -4,38 +4,40 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TakeMyNote.Model;
-using TakeMyNote.WebApi.Services;
+using TakeMyNote.Repositories;
 
 namespace WebApi.Controllers
 {
+    /// <summary>
+    /// This controller implements API Search functionalities
+    /// </summary>
     [Route("api/[controller]")]
     public class NotesController : Controller
     {
-        private readonly INotesService notesService;
+        private readonly INotesRepository notesRepository;
 
-        public NotesController(INotesService notesService)
+        public NotesController(INotesRepository notesRepository)
         {
-            this.notesService = notesService;
+            this.notesRepository = notesRepository;
         }
-        //// GET api/values
-        //[HttpGet]
-        //public IEnumerable<User> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
-
-        // GET api/values/5
+        
+        /// <summary>
+        /// Search a coupon.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Mock search result data.</returns>
         [HttpGet("{id}")]
         public Note Get(int id)
         {
             //return new Note { Id = id};
-            return notesService.Get(id);
+            return notesRepository.Get(id);
         }
 
         // POST api/values
         [HttpPost]
         public void Post([FromBody]Note value)
         {
+
         }
 
         // PUT api/values/5
@@ -48,14 +50,14 @@ namespace WebApi.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+
         }
 
         // GET api/values
         [HttpGet]
-        public IEnumerable<Note> Get()
+        public IEnumerable<Note> GetByUserId(int userId)
         {
-            var notes = new List<Note>();
-            return notes;
+            return notesRepository.GetAllNoteDigestByUserId(userId);
         }
     }
 }

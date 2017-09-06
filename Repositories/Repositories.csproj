@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>TakeMyNote.Repositories</AssemblyName>
+    <RootNamespace>TakeMyNote.Repositories</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Data\DataAccess.csproj" />
+  </ItemGroup>
+
+</Project>
