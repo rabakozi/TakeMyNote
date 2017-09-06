@@ -37,7 +37,7 @@ namespace WebApi.Controllers
         [HttpPost]
         public void Post([FromBody]Note value)
         {
-
+            notesRepository.Insert(value);
         }
 
         // PUT api/values/5

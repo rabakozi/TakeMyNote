@@ -11,16 +11,16 @@ namespace TakeMyNote.Repositories
 {
     public class NotesRepository : INotesRepository
     {
-        private readonly DatabaseContext dbContext;
+        private readonly DatabaseContext ctx;
 
         public NotesRepository(IDesignTimeDbContextFactory<DatabaseContext> dbContextFactory)
         {
-            this.dbContext = dbContextFactory.CreateDbContext(null);
+            ctx = dbContextFactory.CreateDbContext(null);
         }
 
         public Note Get(int id)
         {
-            return dbContext.Notes.FirstOrDefault();
+            return ctx.Notes.FirstOrDefault();
         }
 
         public IEnumerable<Note> GetAllNoteDigestByUserId(int userId)
@@ -29,49 +29,37 @@ namespace TakeMyNote.Repositories
             //var tt = _mapper.Map<IEnumerable<AutoClassificationCustomer>>(await ctx.Set<EntityModels.AutoClassificationCustomer>().Where(t => t.TaskResultId == taskResultId).ToListAsync());
 
 
-            return dbContext.Set<Note>().Where(n => n.UserId == userId);
+            return ctx.Set<Note>().Where(n => n.UserId == userId);
         }
 
         public void Insert(Note note)
         {
-            //var ctx = _dbContext();
+            ((DbSet<Note>)ctx.Set<Note>())
+                .Add(note);
 
-            //var dbCustomers = _mapper.Map<IEnumerable<EntityModels.AutoClassificationCustomer>>(customers).ToList();
-            //foreach (var c in dbCustomers)
-            //{
-            //    c.TaskResultId = taskResultId;
-            //}
+            ctx.SaveChanges();
 
-            //((DbSet<EntityModels.AutoClassificationCustomer>)ctx.Set<EntityModels.AutoClassificationCustomer>())
-            //    .AddRange(dbCustomers);
 
-            //await ctx.SaveChangesAsync();
-
-            
         }
 
         public void Update(Note note)
         {
-            //var ctx = _dbContext();
+            //var noteToUpdate = ctx.Set<Note>().FirstOrDefault(n => n.Id == note.Id);
 
-            //var dbtaskResult = ctx.Set<EntityModels.AutoClassificationTaskResult>().FirstOrDefault(tr => tr.Id == taskResultId);
-            //dbtaskResult.Guid = guid;
-
-            //ctx.Set<EntityModels.AutoClassificationTaskResult>()
-            //    .Attach(dbtaskResult);
+            ctx.Set<Note>()
+                .Attach(note);
             //ctx.Entry(dbtaskResult).Property(tr => tr.Guid).IsModified = true;
 
-            //await ctx.SaveChangesAsync();
+            ctx.SaveChanges();
         }
 
         public void Delete(int id)
         {
             var noteToRemove = new Note { Id = id };
 
-            dbContext.Notes.Attach(noteToRemove);
-            dbContext.Notes.Remove(noteToRemove);
-            dbContext.SaveChanges();
-            //dbContext.Notes.Remove(n => n.Id == id);
+            ctx.Notes.Attach(noteToRemove);
+            ctx.Notes.Remove(noteToRemove);
+            ctx.SaveChanges();
         }
     }
 }

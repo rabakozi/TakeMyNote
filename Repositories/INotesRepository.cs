@@ -7,7 +7,8 @@ namespace TakeMyNote.Repositories
     {
         Note Get(int id);
         IEnumerable<Note> GetAllNoteDigestByUserId(int userId);
-        void Delete(int id);
         void Update(Note note);
+        void Insert(Note note);
+        void Delete(int id);
     }
 }

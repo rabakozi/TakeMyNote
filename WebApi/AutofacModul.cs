@@ -11,16 +11,5 @@ namespace TakeMyNote.WebApi
             //    .As<INotesService>()
             //    .SingleInstance();
         }
-
-        ////
-        //// Helper methods
-        ////
-        //private void RegisterDbContextFactory<TDbContextFactory, TIDbContextFactory>(ContainerBuilder builder)
-        //{
-        //    builder
-        //        .RegisterType<TDbContextFactory>()
-        //        .As<TIDbContextFactory>()
-        //        .InstancePerDependency();
-        //}
     }
 }

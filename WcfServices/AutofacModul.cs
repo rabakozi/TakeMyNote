@@ -1,17 +1,12 @@
 ﻿using Autofac;
 
-namespace TakeMyNote.Repositories
+namespace TakeMyNote.WcfServices
 {
     public class AutofacModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder
-                .RegisterType<NotesRepository>()
-                .As<INotesRepository>()
-                .SingleInstance();
-
-            builder.RegisterModule(new DataAccess.AutofacModule());
+            builder.RegisterModule(new Repositories.AutofacModule());
         }
 
         ////
