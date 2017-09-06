@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using TakeMyNote.DataAccess;
+using TakeMyNote.Model;
 
 namespace TakeMyNote.WebApi.Services
 {
-    public class NotesService
+    public class NotesService : INotesService
     {
         private readonly DatabaseContext dbContext;
 
@@ -16,7 +18,7 @@ namespace TakeMyNote.WebApi.Services
             this.dbContext = dbContextFactory.CreateDbContext(null);
         }
 
-       public Note Get(int id)
+        public Note Get(int id)
         {
             return dbContext.Notes.FirstOrDefault();
         }

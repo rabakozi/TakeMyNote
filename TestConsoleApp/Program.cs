@@ -16,6 +16,8 @@ namespace TestConsoleApp
 {
     class Program
     {
+        DummyClass iuhih = new DummyClass();
+        //DesignTimeDbContextFactory hhu = new DesignTimeDbContextFactory();
         static void Main(string[] args)
         {
             //var builder = new ConfigurationBuilder()

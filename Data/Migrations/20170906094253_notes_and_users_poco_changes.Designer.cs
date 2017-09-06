@@ -11,9 +11,10 @@ using TakeMyNote.DataAccess;
 namespace TakeMyNote.DataAccess.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20170906094253_notes_and_users_poco_changes")]
+    partial class notes_and_users_poco_changes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

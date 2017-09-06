@@ -31,6 +31,10 @@ namespace TakeMyNote.DataAccess
         }
     }
 
+    public class DummyClass
+    {
+    
+    }
     // >dotnet ef migration add testMigration in AspNet5MultipleProject
     public class DatabaseContext : DbContext
     {

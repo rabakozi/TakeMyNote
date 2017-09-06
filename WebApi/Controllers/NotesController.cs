@@ -4,12 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TakeMyNote.Model;
+using TakeMyNote.WebApi.Services;
 
 namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     public class NotesController : Controller
     {
+        private readonly INotesService notesService;
+
+        public NotesController(INotesService notesService)
+        {
+            this.notesService = notesService;
+        }
         //// GET api/values
         //[HttpGet]
         //public IEnumerable<User> Get()
@@ -21,7 +28,8 @@ namespace WebApi.Controllers
         [HttpGet("{id}")]
         public Note Get(int id)
         {
-            return new Note { Id = id};
+            //return new Note { Id = id};
+            return notesService.Get(id);
         }
 
         // POST api/values

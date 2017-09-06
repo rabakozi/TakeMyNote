@@ -36,6 +36,7 @@ namespace TakeMyNote.WebApi
         public void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterModule(new DataAccess.AutofacModule());
+            builder.RegisterModule(new WebApi.AutofacModule());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
