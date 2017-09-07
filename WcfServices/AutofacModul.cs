@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using TakeMyNote.WcfService;
 
 namespace TakeMyNote.WcfServices
 {
@@ -6,6 +7,9 @@ namespace TakeMyNote.WcfServices
     {
         protected override void Load(ContainerBuilder builder)
         {
+            // Register your service implementations.
+            builder.RegisterType<NoteService>().As<INoteService>();
+
             builder.RegisterModule(new Repositories.AutofacModule());
         }
 
