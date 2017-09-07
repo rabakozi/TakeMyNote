@@ -7,7 +7,7 @@ using System.ServiceModel.Description;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac.Integration.Wcf;
-
+using TakeMyNote.WcfServices;
 
 namespace TakeMyNote.WcfService.Host
 {

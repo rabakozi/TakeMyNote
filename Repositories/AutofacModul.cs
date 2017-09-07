@@ -10,6 +10,10 @@ namespace TakeMyNote.Repositories
                 .RegisterType<NotesRepository>()
                 .As<INotesRepository>()
                 .SingleInstance();
+            builder
+                .RegisterType<UsersRepository>()
+                .As<IUsersRepository>()
+                .SingleInstance();
 
             builder.RegisterModule(new DataAccess.AutofacModule());
         }

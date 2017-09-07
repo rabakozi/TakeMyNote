@@ -1,8 +1,9 @@
 ﻿
+using System.Collections.Generic;
 using TakeMyNote.Model;
 using TakeMyNote.Repositories;
 
-namespace TakeMyNote.WcfService
+namespace TakeMyNote.WcfServices
 {
     public class NoteService : INoteService
     {
@@ -13,22 +14,34 @@ namespace TakeMyNote.WcfService
             this.notesRepository = notesRepository;
         }
 
-        public double Add(double dblNum1, double dblNum2)
+        public Note GetById(int id)
         {
-            notesRepository.Insert(new Note { Title="hello", Content = "22" });
-            return (dblNum1 + dblNum2);
+            throw new System.NotImplementedException();
         }
-        public double Subtract(double dblNum1, double dblNum2)
+
+        public Note GetByLink(string sharedId)
         {
-            return (dblNum1 - dblNum2);
+            throw new System.NotImplementedException();
         }
-        public double Multiply(double dblNum1, double dblNum2)
+
+        public IEnumerable<NoteDigest> GetAllByUserId(int userId)
         {
-            return (dblNum1 * dblNum2);
+            throw new System.NotImplementedException();
         }
-        public double Divide(double dblNum1, double dblNum2)
+
+        public void Create(Note note)
         {
-            return ((dblNum2 == 0) ? 0 : (dblNum1 / dblNum2));
+            throw new System.NotImplementedException();
+        }
+
+        public void Update(Note note)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Delete(int id)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

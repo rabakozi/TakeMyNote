@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using TakeMyNote.WcfService;
 
 namespace TakeMyNote.WcfServices
 {

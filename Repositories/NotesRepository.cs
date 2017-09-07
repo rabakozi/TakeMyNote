@@ -18,31 +18,26 @@ namespace TakeMyNote.Repositories
             ctx = dbContextFactory.CreateDbContext(null);
         }
 
-        public Note Get(int id)
+        public Task<Note> Get(int id)
         {
-            return ctx.Notes.FirstOrDefault();
+            return ctx.Notes.FirstAsync(n => n.Id == id);
         }
 
-        public IEnumerable<Note> GetAllNoteDigestByUserId(int userId)
+        public async Task<IEnumerable<NoteDigest>> GetAllNoteDigestByUserId(int userId)
         {
-            //var ctx = _readOnlyDbContext();
-            //var tt = _mapper.Map<IEnumerable<AutoClassificationCustomer>>(await ctx.Set<EntityModels.AutoClassificationCustomer>().Where(t => t.TaskResultId == taskResultId).ToListAsync());
-
-
-            return ctx.Set<Note>().Where(n => n.UserId == userId);
+            var notes = await ctx.Notes.Where(n => n.UserId == userId).ToListAsync();
+            return (IEnumerable<Note>)notes;
         }
 
-        public void Insert(Note note)
+        public Task Insert(Note note)
         {
             ((DbSet<Note>)ctx.Set<Note>())
                 .Add(note);
 
-            ctx.SaveChanges();
-
-
+            return ctx.SaveChangesAsync();
         }
 
-        public void Update(Note note)
+        public Task Update(Note note)
         {
             //var noteToUpdate = ctx.Set<Note>().FirstOrDefault(n => n.Id == note.Id);
 
@@ -50,16 +45,17 @@ namespace TakeMyNote.Repositories
                 .Attach(note);
             //ctx.Entry(dbtaskResult).Property(tr => tr.Guid).IsModified = true;
 
-            ctx.SaveChanges();
+            return ctx.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public Task Delete(int id)
         {
             var noteToRemove = new Note { Id = id };
 
             ctx.Notes.Attach(noteToRemove);
             ctx.Notes.Remove(noteToRemove);
-            ctx.SaveChanges();
+
+            return ctx.SaveChangesAsync();
         }
     }
 }

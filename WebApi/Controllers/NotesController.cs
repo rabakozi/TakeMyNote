@@ -9,7 +9,7 @@ using TakeMyNote.Repositories;
 namespace WebApi.Controllers
 {
     /// <summary>
-    /// This controller implements API Search functionalities
+    /// This controller implements Notes CRUD functionalities
     /// </summary>
     [Route("api/[controller]")]
     public class NotesController : Controller
@@ -22,46 +22,54 @@ namespace WebApi.Controllers
         }
         
         /// <summary>
-        /// Search a coupon.
+        /// Gets a Note by Id
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>Mock search result data.</returns>
+        /// <returns>Note</returns>
         [HttpGet("{id}")]
-        public Note Get(int id)
+        public Task<Note> Get(int id)
         {
-            //return new Note { Id = id};
             return notesRepository.Get(id);
         }
 
-        // POST api/values
+        /// <summary>
+        /// Creates a new Note
+        /// </summary>
         [HttpPost]
-        public void Post([FromBody]Note value)
+        public Task Post([FromBody]Note value)
         {
-            notesRepository.Insert(value);
+            return notesRepository.Insert(value);
         }
 
-        // PUT api/values/5
+        /// <summary>
+        /// Amends an existing Note
+        /// </summary>
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]Note value)
+        public Task Put(int id, [FromBody]Note value)
         {
+            return notesRepository.Update(value);
         }
 
-        // DELETE api/values/5
+        /// <summary>
+        /// Deletes a Note of a given Id
+        /// </summary>
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public Task Delete(int id)
         {
-
+            return notesRepository.Delete(id);
         }
 
-        // GET api/values
+        /// <summary>
+        /// Returns a list of Note digest of a user
+        /// </summary>
+        /// <returns>IEnumerable&lt;Note&gt;</returns>
         [HttpGet]
-        public IEnumerable<Note> GetByUserId(int userId)
+        public Task<IEnumerable<NoteDigest>> GetByUserId(int userId)
         {
             return notesRepository.GetAllNoteDigestByUserId(userId);
         }
     }
 }
-
 
 // TODO: share link, list... collection, support infinite scroll
 // TODO: authentication; list notes by users...

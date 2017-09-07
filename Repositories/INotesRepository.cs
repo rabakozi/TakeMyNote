@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using TakeMyNote.Model;
 
 namespace TakeMyNote.Repositories
 {
     public interface INotesRepository
     {
-        Note Get(int id);
-        IEnumerable<Note> GetAllNoteDigestByUserId(int userId);
-        void Update(Note note);
-        void Insert(Note note);
-        void Delete(int id);
+        Task<Note> Get(int id);
+        Task<IEnumerable<NoteDigest>> GetAllNoteDigestByUserId(int userId);
+        Task Update(Note note);
+        Task Insert(Note note);
+        Task Delete(int id);
     }
 }

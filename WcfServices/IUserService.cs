@@ -6,22 +6,16 @@ using TakeMyNote.Model;
 namespace TakeMyNote.WcfServices
 {
     [ServiceContract]
-    public interface INoteService
+    public interface IUserService
     {
         [OperationContract]
-        Note GetById(int id);
+        User GetById(int id);
 
         [OperationContract]
-        Note GetByLink(string sharedId);
+        void Create(User note);
 
         [OperationContract]
-        IEnumerable<NoteDigest> GetAllByUserId(int userId);
-
-        [OperationContract]
-        void Create(Note note);
-
-        [OperationContract]
-        void Update(Note note);
+        void Update(User note);
 
         [OperationContract]
         void Delete(int id);

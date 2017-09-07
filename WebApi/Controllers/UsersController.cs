@@ -4,43 +4,69 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TakeMyNote.Model;
+using TakeMyNote.Repositories;
 
 namespace WebApi.Controllers
 {
+    /// <summary>
+    /// This controller implements Notes CRUD functionalities
+    /// </summary>
     [Route("api/[controller]")]
     public class UsersController : Controller
     {
-        // GET api/values
+        private readonly IUsersRepository usersRepository;
+
+        public UsersController(IUsersRepository usersRepository)
+        {
+            this.usersRepository = usersRepository;
+        }
+
+        /// <summary>
+        /// Gets all the users
+        /// </summary>
+        /// <returns>IEnumerable&lt;User&gt;</returns>
         [HttpGet]
-        public IEnumerable<User> Get()
+        public Task<IEnumerable<User>> Get()
         {
-            var users = new List<User>();
-            return users;
+            return usersRepository.GetAll();
         }
 
-        // GET api/values/5
+        /// <summary>
+        /// Gets a User by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>User</returns>
         [HttpGet("{id}")]
-        public User Get(int id)
+        public Task<User> Get(int id)
         {
-            return new User{Id = id};
+            return usersRepository.Get(id);
         }
 
-        // POST api/values
+        /// <summary>
+        /// Creates a new User
+        /// </summary>
         [HttpPost]
-        public void Post([FromBody]User value)
+        public Task Post([FromBody]User user)
         {
+            return usersRepository.Insert(user);
         }
 
-        // PUT api/values/5
+        /// <summary>
+        /// Amends an existing User
+        /// </summary>
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]User value)
+        public Task Put(int id, [FromBody]User user)
         {
+            return usersRepository.Update(user);
         }
 
-        // DELETE api/values/5
+        /// <summary>
+        /// Deletes a User of a given Id
+        /// </summary>
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public Task Delete(int id)
         {
+            return usersRepository.Delete(id);
         }
     }
 }
