@@ -40,19 +40,15 @@ namespace TakeMyNote.Repositories
 
         public Task Update(User user)
         {
-            ctx.Set<User>()
-               .Attach(user);
-
+            var dbUser = ctx.Users.First(u => u.Id == user.Id);
+            ctx.Entry(dbUser).CurrentValues.SetValues(user);
             return ctx.SaveChangesAsync();
         }
 
         public Task Delete(int id)
         {
-            var userToRemove = new User { Id = id };
-
-            ctx.Users.Attach(userToRemove);
-            ctx.Users.Remove(userToRemove);
-
+            var user = ctx.Users.First(u => u.Id == id);
+            ctx.Remove(user);
             return ctx.SaveChangesAsync();
         }
     }

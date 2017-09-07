@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TakeMyNote.Model;
 using TakeMyNote.Repositories;
 
@@ -14,34 +15,34 @@ namespace TakeMyNote.WcfServices
             this.notesRepository = notesRepository;
         }
 
-        public Note GetById(int id)
+        public Task<Note> GetById(int id)
+        {
+            return notesRepository.Get(id);
+        }
+
+        public Task<Note> GetByLink(string sharedId)
         {
             throw new System.NotImplementedException();
         }
 
-        public Note GetByLink(string sharedId)
+        public Task<IEnumerable<NoteDigest>> GetAllByUserId(int userId)
         {
-            throw new System.NotImplementedException();
+            return notesRepository.GetAllNoteDigestByUserId(userId);
         }
 
-        public IEnumerable<NoteDigest> GetAllByUserId(int userId)
+        public Task Create(Note note)
         {
-            throw new System.NotImplementedException();
+            return notesRepository.Insert(note);
         }
 
-        public void Create(Note note)
+        public Task Update(Note note)
         {
-            throw new System.NotImplementedException();
+            return notesRepository.Update(note);
         }
 
-        public void Update(Note note)
+        public Task Delete(int id)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public void Delete(int id)
-        {
-            throw new System.NotImplementedException();
+            return notesRepository.Delete(id);
         }
     }
 }

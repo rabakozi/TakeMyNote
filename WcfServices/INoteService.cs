@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ServiceModel;
+using System.Threading.Tasks;
 using TakeMyNote.Model;
 
 namespace TakeMyNote.WcfServices
@@ -9,21 +10,21 @@ namespace TakeMyNote.WcfServices
     public interface INoteService
     {
         [OperationContract]
-        Note GetById(int id);
+        Task<Note> GetById(int id);
 
         [OperationContract]
-        Note GetByLink(string sharedId);
+        Task<Note> GetByLink(string sharedId);
 
         [OperationContract]
-        IEnumerable<NoteDigest> GetAllByUserId(int userId);
+        Task<IEnumerable<NoteDigest>> GetAllByUserId(int userId);
 
         [OperationContract]
-        void Create(Note note);
+        Task Create(Note note);
 
         [OperationContract]
-        void Update(Note note);
+        Task Update(Note note);
 
         [OperationContract]
-        void Delete(int id);
+        Task Delete(int id);
     }
 }       

@@ -31,6 +31,7 @@ namespace TakeMyNote.Repositories
 
         public Task Insert(Note note)
         {
+            //TODO: return Id
             ((DbSet<Note>)ctx.Set<Note>())
                 .Add(note);
 
@@ -39,22 +40,15 @@ namespace TakeMyNote.Repositories
 
         public Task Update(Note note)
         {
-            //var noteToUpdate = ctx.Set<Note>().FirstOrDefault(n => n.Id == note.Id);
-
-            ctx.Set<Note>()
-                .Attach(note);
-            //ctx.Entry(dbtaskResult).Property(tr => tr.Guid).IsModified = true;
-
+            var dbNote = ctx.Notes.First(u => u.Id == note.Id);
+            ctx.Entry(dbNote).CurrentValues.SetValues(note);
             return ctx.SaveChangesAsync();
         }
 
         public Task Delete(int id)
         {
-            var noteToRemove = new Note { Id = id };
-
-            ctx.Notes.Attach(noteToRemove);
-            ctx.Notes.Remove(noteToRemove);
-
+            var note = ctx.Notes.First(n => n.Id == id);
+            ctx.Remove(note);
             return ctx.SaveChangesAsync();
         }
     }

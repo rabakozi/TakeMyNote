@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ServiceModel;
+using System.Threading.Tasks;
 using TakeMyNote.Model;
 
 namespace TakeMyNote.WcfServices
@@ -9,15 +10,18 @@ namespace TakeMyNote.WcfServices
     public interface IUserService
     {
         [OperationContract]
-        User GetById(int id);
+        Task<IEnumerable<User>> GetAll();
 
         [OperationContract]
-        void Create(User note);
+        Task<User> GetById(int id);
 
         [OperationContract]
-        void Update(User note);
+        Task Create(User user);
 
         [OperationContract]
-        void Delete(int id);
+        Task Update(User user);
+
+        [OperationContract]
+        Task Delete(int id);
     }
 }       

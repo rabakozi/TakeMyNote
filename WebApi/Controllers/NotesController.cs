@@ -36,18 +36,18 @@ namespace WebApi.Controllers
         /// Creates a new Note
         /// </summary>
         [HttpPost]
-        public Task Post([FromBody]Note value)
+        public Task Post([FromBody]Note note)
         {
-            return notesRepository.Insert(value);
+            return notesRepository.Insert(note);
         }
 
         /// <summary>
         /// Amends an existing Note
         /// </summary>
         [HttpPut("{id}")]
-        public Task Put(int id, [FromBody]Note value)
+        public Task Put(int id, [FromBody]Note note)
         {
-            return notesRepository.Update(value);
+            return notesRepository.Update(note);
         }
 
         /// <summary>

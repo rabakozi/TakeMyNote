@@ -4,29 +4,42 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TakeMyNote.Model;
+using TakeMyNote.Repositories;
 
 namespace TakeMyNote.WcfServices
 {
     class UserService : IUserService
     {
-        public void Create(User note)
+        public IUsersRepository usersRepository { get; }
+
+        public UserService(IUsersRepository usersRepository)
         {
-            throw new NotImplementedException();
+            this.usersRepository = usersRepository;
         }
 
-        public void Delete(int id)
+        public Task Create(User user)
         {
-            throw new NotImplementedException();
+            return usersRepository.Insert(user);
         }
 
-        public User GetById(int id)
+        public Task Delete(int id)
         {
-            throw new NotImplementedException();
+            return usersRepository.Delete(id);
         }
 
-        public void Update(User note)
+        public Task<IEnumerable<User>> GetAll()
         {
-            throw new NotImplementedException();
+            return usersRepository.GetAll();
+        }
+
+        public Task<User> GetById(int id)
+        {
+            return usersRepository.Get(id);
+        }
+
+        public Task Update(User user)
+        {
+            return usersRepository.Update(user);
         }
     }
 }

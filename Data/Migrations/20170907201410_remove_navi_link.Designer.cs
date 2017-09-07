@@ -11,9 +11,10 @@ using TakeMyNote.DataAccess;
 namespace TakeMyNote.DataAccess.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20170907201410_remove_navi_link")]
+    partial class remove_navi_link
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,7 +33,7 @@ namespace TakeMyNote.DataAccess.Migrations
 
                     b.Property<DateTime>("Modified");
 
-                    b.Property<string>("ShareLink");
+                    b.Property<Guid>("ShareLink");
 
                     b.Property<string>("Summary");
 
