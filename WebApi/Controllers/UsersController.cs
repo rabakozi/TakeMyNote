@@ -57,6 +57,7 @@ namespace WebApi.Controllers
         [HttpPut("{id}")]
         public Task Put(int id, [FromBody]User user)
         {
+            user.Id = id;
             return usersRepository.Update(user);
         }
 

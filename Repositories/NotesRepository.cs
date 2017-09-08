@@ -31,6 +31,7 @@ namespace TakeMyNote.Repositories
 
         public Task Insert(Note note)
         {
+            note.Created = note.Modified = DateTime.Now;
             //TODO: return Id
             ((DbSet<Note>)ctx.Set<Note>())
                 .Add(note);
@@ -41,6 +42,8 @@ namespace TakeMyNote.Repositories
         public Task Update(Note note)
         {
             var dbNote = ctx.Notes.First(u => u.Id == note.Id);
+            note.Created = dbNote.Created;
+            note.Modified = DateTime.Now;
             ctx.Entry(dbNote).CurrentValues.SetValues(note);
             return ctx.SaveChangesAsync();
         }

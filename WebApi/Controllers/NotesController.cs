@@ -47,6 +47,7 @@ namespace WebApi.Controllers
         [HttpPut("{id}")]
         public Task Put(int id, [FromBody]Note note)
         {
+            note.Id = id;
             return notesRepository.Update(note);
         }
 

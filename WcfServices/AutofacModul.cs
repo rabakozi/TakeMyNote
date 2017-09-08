@@ -11,16 +11,5 @@ namespace TakeMyNote.WcfServices
             builder.RegisterType<UserService>().As<IUserService>();
             builder.RegisterModule(new Repositories.AutofacModule());
         }
-
-        ////
-        //// Helper methods
-        ////
-        //private void RegisterDbContextFactory<TDbContextFactory, TIDbContextFactory>(ContainerBuilder builder)
-        //{
-        //    builder
-        //        .RegisterType<TDbContextFactory>()
-        //        .As<TIDbContextFactory>()
-        //        .InstancePerDependency();
-        //}
     }
 }

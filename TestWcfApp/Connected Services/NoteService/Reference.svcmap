@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="fae96b62-e54c-4c6a-ac81-1e41d9e2ec63" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:9001/NoteService" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="NoteService.xsd" MetadataType="Schema" ID="40bcc20d-bf98-4bb2-ac72-d4517a9f4dd2" SourceId="1" SourceUrl="http://localhost:9001/NoteService?xsd=xsd1" />
+    <MetadataFile FileName="NoteService.wsdl" MetadataType="Wsdl" ID="fdb39e06-f820-40eb-93bf-1bf6f30b1515" SourceId="1" SourceUrl="http://localhost:9001/NoteService?wsdl" />
+    <MetadataFile FileName="NoteService1.xsd" MetadataType="Schema" ID="c240071e-327e-41a5-b5c7-e4493dae6fd4" SourceId="1" SourceUrl="http://localhost:9001/NoteService?xsd=xsd2" />
+    <MetadataFile FileName="NoteService.disco" MetadataType="Disco" ID="d4de1851-8d68-4cec-b8ff-434d6b17d059" SourceId="1" SourceUrl="http://localhost:9001/NoteService?disco" />
+    <MetadataFile FileName="NoteService2.xsd" MetadataType="Schema" ID="74f9185e-1cdd-4ea4-80ea-93ce8b059024" SourceId="1" SourceUrl="http://localhost:9001/NoteService?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
