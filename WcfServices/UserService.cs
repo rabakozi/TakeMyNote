@@ -41,32 +41,5 @@ namespace TakeMyNote.WcfServices
         {
             return usersRepository.Update(user);
         }
-
-        // sync wrappers
-
-        public IEnumerable<User> GetAll()
-        {
-            return GetAllAsync().GetAwaiter().GetResult();
-        }
-
-        public User GetById(int id)
-        {
-            return GetByIdAsync(id).GetAwaiter().GetResult();
-        }
-
-        public void Create(User user)
-        {
-            CreateAsync(user).GetAwaiter().GetResult();
-        }
-
-        public void Update(User user)
-        {
-            UpdateAsync(user).GetAwaiter().GetResult();
-        }
-
-        public void Delete(int id)
-        {
-            DeleteAsync(id).GetAwaiter().GetResult();
-        }
     }
 }

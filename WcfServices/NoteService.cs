@@ -44,35 +44,5 @@ namespace TakeMyNote.WcfServices
         {
             return notesRepository.Delete(id);
         }
-
-        public Note GetById(int id)
-        {
-            return GetByIdAsync(id).GetAwaiter().GetResult();
-        }
-
-        public Note GetByLink(string sharedId)
-        {
-            return GetByLinkAsync(sharedId).GetAwaiter().GetResult();
-        }
-
-        public IEnumerable<NoteDigest> GetAllByUserId(int userId)
-        {
-            return GetAllByUserIdAsync(userId).GetAwaiter().GetResult();
-        }
-
-        public void Create(Note note)
-        {
-            CreateAsync(note).GetAwaiter().GetResult();
-        }
-
-        public void Update(Note note)
-        {
-            UpdateAsync(note).GetAwaiter().GetResult();
-        }
-
-        public void Delete(int id)
-        {
-            DeleteAsync(id).GetAwaiter().GetResult();
-        }
     }
 }
