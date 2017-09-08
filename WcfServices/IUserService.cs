@@ -9,19 +9,30 @@ namespace TakeMyNote.WcfServices
     [ServiceContract]
     public interface IUserService
     {
-        [OperationContract]
-        Task<IEnumerable<User>> GetAll();
 
+        [OperationContract(AsyncPattern = true)]
+        Task<IEnumerable<User>> GetAllAsync();
         [OperationContract]
-        Task<User> GetById(int id);
+        IEnumerable<User> GetAll();
 
+        [OperationContract(AsyncPattern = true)]
+        Task<User> GetByIdAsync(int id);
         [OperationContract]
-        Task Create(User user);
+        User GetById(int id);
 
+        [OperationContract(AsyncPattern = true)]
+        Task CreateAsync(User user);
         [OperationContract]
-        Task Update(User user);
+        void Create(User user);
 
+        [OperationContract(AsyncPattern = true)]
+        Task UpdateAsync(User user);
         [OperationContract]
-        Task Delete(int id);
+        void Update(User user);
+
+        [OperationContract(AsyncPattern = true)]
+        Task DeleteAsync(int id);
+        [OperationContract]
+        void Delete(int id);
     }
 }       

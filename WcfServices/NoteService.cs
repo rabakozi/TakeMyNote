@@ -15,34 +15,64 @@ namespace TakeMyNote.WcfServices
             this.notesRepository = notesRepository;
         }
 
-        public Task<Note> GetById(int id)
+        public Task<Note> GetByIdAsync(int id)
         {
             return notesRepository.Get(id);
         }
 
-        public Task<Note> GetByLink(string sharedId)
+        public Task<Note> GetByLinkAsync(string sharedId)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<IEnumerable<NoteDigest>> GetAllByUserId(int userId)
+        public Task<IEnumerable<NoteDigest>> GetAllByUserIdAsync(int userId)
         {
             return notesRepository.GetAllNoteDigestByUserId(userId);
         }
 
-        public Task Create(Note note)
+        public Task CreateAsync(Note note)
         {
             return notesRepository.Insert(note);
         }
 
-        public Task Update(Note note)
+        public Task UpdateAsync(Note note)
         {
             return notesRepository.Update(note);
         }
 
-        public Task Delete(int id)
+        public Task DeleteAsync(int id)
         {
             return notesRepository.Delete(id);
+        }
+
+        public Note GetById(int id)
+        {
+            return GetByIdAsync(id).GetAwaiter().GetResult();
+        }
+
+        public Note GetByLink(string sharedId)
+        {
+            return GetByLinkAsync(sharedId).GetAwaiter().GetResult();
+        }
+
+        public IEnumerable<NoteDigest> GetAllByUserId(int userId)
+        {
+            return GetAllByUserIdAsync(userId).GetAwaiter().GetResult();
+        }
+
+        public void Create(Note note)
+        {
+            CreateAsync(note).GetAwaiter().GetResult();
+        }
+
+        public void Update(Note note)
+        {
+            UpdateAsync(note).GetAwaiter().GetResult();
+        }
+
+        public void Delete(int id)
+        {
+            DeleteAsync(id).GetAwaiter().GetResult();
         }
     }
 }

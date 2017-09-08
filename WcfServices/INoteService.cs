@@ -9,22 +9,34 @@ namespace TakeMyNote.WcfServices
     [ServiceContract]
     public interface INoteService
     {
+        [OperationContract(AsyncPattern = true)]
+        Task<Note> GetByIdAsync(int id);
         [OperationContract]
-        Task<Note> GetById(int id);
+        Note GetById(int id);
 
+        [OperationContract(AsyncPattern = true)]
+        Task<Note> GetByLinkAsync(string sharedId);
         [OperationContract]
-        Task<Note> GetByLink(string sharedId);
+        Note GetByLink(string sharedId);
 
+        [OperationContract(AsyncPattern = true)]
+        Task<IEnumerable<NoteDigest>> GetAllByUserIdAsync(int userId);
         [OperationContract]
-        Task<IEnumerable<NoteDigest>> GetAllByUserId(int userId);
+        IEnumerable<NoteDigest> GetAllByUserId(int userId);
 
+        [OperationContract(AsyncPattern = true)]
+        Task CreateAsync(Note note);
         [OperationContract]
-        Task Create(Note note);
+        void Create(Note note);
 
+        [OperationContract(AsyncPattern = true)]
+        Task UpdateAsync(Note note);
         [OperationContract]
-        Task Update(Note note);
+        void Update(Note note);
 
+        [OperationContract(AsyncPattern = true)]
+        Task DeleteAsync(int id);
         [OperationContract]
-        Task Delete(int id);
+        void Delete(int id);
     }
 }       
