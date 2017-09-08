@@ -8,7 +8,7 @@ using TakeMyNote.Repositories;
 
 namespace TakeMyNote.WcfServices
 {
-    class UserService : IUserService
+    public class UserService : IUserService
     {
         public IUsersRepository usersRepository { get; }
 

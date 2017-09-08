@@ -8,7 +8,7 @@ namespace TakeMyNote.WcfServices
         {
             // Register your service implementations.
             builder.RegisterType<NoteService>().As<INoteService>();
-
+            builder.RegisterType<UserService>().As<IUserService>();
             builder.RegisterModule(new Repositories.AutofacModule());
         }
 
